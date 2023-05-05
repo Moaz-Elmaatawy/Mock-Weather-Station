@@ -39,7 +39,7 @@ public class WeatherStationMock {
         }
         
         // Construct status message
-        long timestamp = System.currentTimeMillis() / 1000;
+        long timestamp = System.currentTimeMillis();
         WeatherData weatherData = new WeatherData(humidity, temperature, windSpeed);
         WeatherStatusMessage statusMessage = new WeatherStatusMessage(stationId, messageCounter, batteryStatus, timestamp, weatherData);
         return gson.toJson(statusMessage);
