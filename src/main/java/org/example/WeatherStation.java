@@ -7,9 +7,14 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public class WeatherStation {
+public class WeatherStation implements Runnable{
     private static final String TOPIC = "weather_data";
     private static final String BOOTSTRAP_SERVERS = "localhost:9092";
+    private final int stationID;
+
+    public WeatherStation(int stationID) {
+        this.stationID = stationID;
+    }
 
     public static void main(String[] args) {
         // Set up the producer properties
@@ -22,7 +27,8 @@ public class WeatherStation {
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
         //create weather station mock
-        WeatherStationMock station = new WeatherStationMock(1);
+
+        WeatherStationMock station = args.length>0?new WeatherStationMock(Integer.parseInt(args[0])):new WeatherStationMock(1);
         
 
         while (true) {
@@ -50,5 +56,9 @@ public class WeatherStation {
         // Close the producer
         //producer.close();
         
+    }
+    @Override
+    public void run() {
+        main(new String[]{String.valueOf(this.stationID)});
     }
 }
