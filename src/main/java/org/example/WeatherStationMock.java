@@ -45,7 +45,7 @@ public class WeatherStationMock {
         return gson.toJson(statusMessage);
     }
     
-    private static class WeatherStatusMessage {
+    public static class WeatherStatusMessage {
         private final long station_id;
         private final long s_no;
         private final String battery_status;
@@ -61,7 +61,7 @@ public class WeatherStationMock {
         }
     }
     
-    private static class WeatherData {
+    public static class WeatherData {
         private final int humidity;
         private final int temperature;
         private final int wind_speed;

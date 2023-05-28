@@ -54,7 +54,7 @@ public class WeatherStation implements Runnable{
         Random rand = new Random(hostname.hashCode());
         stationID = Math.abs(rand.nextLong());
         System.out.println("===="+ stationID);
-        WeatherStationMock station = new WeatherStationMock(stationID);
+        WeatherStationMock station = new WeatherStationMock(args.length >0 ?Long.parseLong(args[0]):1);
         
 
         while (true) {
